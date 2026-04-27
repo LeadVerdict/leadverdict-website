@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadVerdict — Master Guide & Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0A0A08;
+    color: #EBE5D4;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 60px 32px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .meta {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: #B8945C; margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight: 400;
+    color: #F5F0E1; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+  h1 i { color: #B8945C; font-weight: 300; }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 400;
+    color: #F5F0E1; margin: 60px 0 16px;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: #EBE5D4; margin: 32px 0 12px;
+  }
+  h4 {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #B8945C; margin: 24px 0 12px; font-weight: 500;
+  }
+  p { color: #8B887A; margin-bottom: 16px; font-size: 15px; }
+  p strong { color: #EBE5D4; font-weight: 500; }
+  hr {
+    border: 0; height: 1px; margin: 60px 0;
+    background: linear-gradient(90deg, transparent, #B8945C40, transparent);
+  }
+  ul { padding-left: 0; list-style: none; margin-bottom: 20px; }
+  ul li {
+    color: #8B887A; padding: 6px 0 6px 24px;
+    position: relative; font-size: 14px;
+  }
+  ul li::before {
+    content: '—'; position: absolute; left: 0;
+    color: #B8945C; font-family: 'Cormorant Garamond', serif;
+  }
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  code {
+    background: #13130F; color: #B8945C;
+    padding: 2px 6px; border-radius: 3px;
+    border: 1px solid #1E1E1A;
+  }
+  pre {
+    background: #13130F; border: 1px solid #1E1E1A;
+    border-radius: 8px; padding: 20px;
+    color: #B8945C; line-height: 1.6;
+    overflow-x: auto; margin: 16px 0;
+    border-left: 2px solid #B8945C;
+  }
+  .swatch-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .swatch {
+    border: 1px solid #1E1E1A; border-radius: 6px; overflow: hidden;
+  }
+  .swatch-color { height: 80px; }
+  .swatch-info { padding: 10px 12px; }
+  .swatch-name {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 14px; color: #EBE5D4;
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: #5C5A4F; margin-top: 2px;
+  }
+  table {
+    width: 100%; border-collapse: collapse; margin: 16px 0;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 10px 12px; text-align: left;
+    border-bottom: 1px solid #1E1E1A;
+  }
+  th {
+    color: #B8945C; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; font-weight: 500;
+  }
+  td { color: #8B887A; }
+  td:first-child { color: #EBE5D4; }
+  td code { font-size: 11px; }
+  .callout {
+    background: #13130F; border: 1px solid #1E1E1A;
+    border-left: 2px solid #B8945C;
+    padding: 20px 24px; margin: 24px 0; border-radius: 4px;
+  }
+  .callout p { color: #EBE5D4; font-style: italic; margin-bottom: 0; }
+  .toc {
+    background: #13130F; border: 1px solid #1E1E1A;
+    border-radius: 6px; padding: 24px 28px; margin-bottom: 60px;
+  }
+  .toc-title {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #B8945C; font-size: 18px; margin-bottom: 16px;
+  }
+  .toc ol { padding-left: 24px; color: #EBE5D4; }
+  .toc ol li {
+    padding: 4px 0; list-style: decimal; color: #8B887A;
+    font-size: 13px;
+  }
+  .toc ol li::before { display: none; }
+  .toc a { color: #EBE5D4; text-decoration: none; transition: color 0.2s; }
+  .toc a:hover { color: #B8945C; }
+  .roman {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #B8945C; font-size: 32px; line-height: 1; font-weight: 400;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Master Guide · v1.0 · April 2026</div>
+  <h1>The LeadVerdict <i>Design System</i></h1>
+  <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #EBE5D4; margin-bottom: 32px;">
+    A reference document for the website's architecture, design language,
+    and deployment procedures.
+  </p>
+
+  <hr>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#i">Site Architecture</a></li>
+      <li><a href="#ii">Design Philosophy</a></li>
+      <li><a href="#iii">Color System</a></li>
+      <li><a href="#iv">Typography</a></li>
+      <li><a href="#v">Spacing & Layout</a></li>
+      <li><a href="#vi">Component Catalog</a></li>
+      <li><a href="#vii">Tone of Voice</a></li>
+      <li><a href="#viii">Imagery Standards</a></li>
+      <li><a href="#ix">Deployment</a></li>
+      <li><a href="#x">Maintenance</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="i">§ Section I</h4>
+  <h2>Site Architecture <span class="roman">·  i</span></h2>
+
+  <p>The LeadVerdict website is a single-page composition with five primary movements,
+  designed to function as both a marketing site and a quiet positioning statement.
+  The user journey is deliberately linear — each section answers a question raised by the previous.</p>
+
+  <table>
+    <thead>
+      <tr><th>Section</th><th>Purpose</th><th>Anchor</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hero</td><td>Establish positioning &amp; trust</td><td><code>#top</code></td></tr>
+      <tr><td>Approach</td><td>Three-pillar methodology</td><td><code>#approach</code></td></tr>
+      <tr><td>Portfolio</td><td>Recent engagements grid</td><td><code>#properties</code></td></tr>
+      <tr><td>Advisors</td><td>Network bios (asymmetric grid)</td><td><code>#advisors</code></td></tr>
+      <tr><td>Journal</td><td>Editorial articles &amp; thought leadership</td><td><code>#journal</code></td></tr>
+      <tr><td>Consultation</td><td>Lead capture form</td><td><code>#consult</code></td></tr>
+    </tbody>
+  </table>
+
+  <p>The page is built as a single HTML file with Tailwind CSS via CDN. No build
+  step required. The entire site weighs under 90 KB before images.</p>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="ii">§ Section II</h4>
+  <h2>Design Philosophy <span class="roman">·  ii</span></h2>
+
+  <p>The aesthetic direction is <strong>Editorial Luxury</strong> — drawing from the visual
+  language of <em>Architectural Digest</em>, the typography of legacy magazines, and the
+  restraint of private wealth advisory firms. The site does not look like a real estate site.
+  That is intentional.</p>
+
+  <h3>Five Design Tenets</h3>
+  <ul>
+    <li><strong>Restraint over abundance.</strong> Generous negative space communicates exclusivity.</li>
+    <li><strong>Serif over sans for headlines.</strong> Authority comes from typographic tradition.</li>
+    <li><strong>Brass over gold.</strong> Aged metal accents, never bright or saturated.</li>
+    <li><strong>Asymmetry over symmetry.</strong> Editorial layouts feel composed, not generated.</li>
+    <li><strong>Reveal over disclose.</strong> Information emerges as the visitor scrolls.</li>
+  </ul>
+
+  <div class="callout">
+    <p>If a page element looks like a "real estate website" element, redesign it
+    to look like a magazine layout instead.</p>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="iii">§ Section III</h4>
+  <h2>Color System <span class="roman">·  iii</span></h2>
+
+  <p>The palette is built on three foundations: <strong>onyx</strong> as the base,
+  <strong>bone</strong> as the contrast text, and <strong>brass</strong> as the singular accent.
+  No additional brand colors should be introduced.</p>
+
+  <h4>Foundation</h4>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0A0A08"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Onyx</div>
+        <div class="swatch-hex">#0A0A08</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#13130F"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Obsidian</div>
+        <div class="swatch-hex">#13130F</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1E1E1A"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Carbon</div>
+        <div class="swatch-hex">#1E1E1A</div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Contrast & Text</h4>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F5F0E1"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Bone</div>
+        <div class="swatch-hex">#F5F0E1</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#EBE5D4"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Ivory</div>
+        <div class="swatch-hex">#EBE5D4</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#8B887A"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Stone</div>
+        <div class="swatch-hex">#8B887A</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#5C5A4F"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Slate</div>
+        <div class="swatch-hex">#5C5A4F</div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Brass Accent (single accent — use sparingly)</h4>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#8C6D3F"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Brass Dark</div>
+        <div class="swatch-hex">#8C6D3F</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#B8945C"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Brass</div>
+        <div class="swatch-hex">#B8945C</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#D4B584"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Brass Light</div>
+        <div class="swatch-hex">#D4B584</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="iv">§ Section IV</h4>
+  <h2>Typography <span class="roman">·  iv</span></h2>
+
+  <h3>Display — Cormorant Garamond</h3>
+  <p>Used for all headlines, property names, and editorial pull quotes.
+  The italic variant (<em>weight 300</em>) is reserved for emphasis and key phrasing —
+  never used for entire paragraphs.</p>
+
+  <pre>font-family: 'Cormorant Garamond', Georgia, serif;
+weights: 300 (italic), 400 (regular), 500 (semibold)</pre>
+
+  <h3>Body — Inter Tight</h3>
+  <p>Used for all running text, navigation, form labels, and metadata.
+  Default body weight is 300 (light) — heavier weights only for buttons and emphasis.</p>
+
+  <pre>font-family: 'Inter Tight', -apple-system, sans-serif;
+weights: 300 (default body), 400, 500 (UI &amp; buttons)</pre>
+
+  <h3>Mono — JetBrains Mono</h3>
+  <p>Used only for metadata labels, dates, and technical content.</p>
+
+  <h3>Type Scale</h3>
+  <table>
+    <thead>
+      <tr><th>Token</th><th>Size</th><th>Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>display-xl</code></td><td>48–144px</td><td>Hero headline</td></tr>
+      <tr><td><code>display-lg</code></td><td>40–88px</td><td>Section headings</td></tr>
+      <tr><td><code>display-md</code></td><td>32–56px</td><td>Sub-section headings</td></tr>
+      <tr><td><code>display-sm</code></td><td>24–36px</td><td>Card headings</td></tr>
+      <tr><td><code>label-imperial</code></td><td>10px · 0.4em</td><td>Section labels (uppercase)</td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="v">§ Section V</h4>
+  <h2>Spacing &amp; Layout <span class="roman">·  v</span></h2>
+
+  <p>The site uses a 12-column max-width container of <code>1280px</code> with
+  generous internal spacing. Vertical section padding is intentionally large
+  to create breathing room.</p>
+
+  <ul>
+    <li>Container max width: <code>max-w-7xl</code> (1280px)</li>
+    <li>Container horizontal padding: <code>px-6 lg:px-12</code> (24/48px)</li>
+    <li>Section vertical padding: <code>py-32 lg:py-48</code> (128/192px)</li>
+    <li>Card internal padding: <code>p-8 lg:p-12</code> (32/48px)</li>
+  </ul>
+
+  <h3>Asymmetric Grid Pattern</h3>
+  <p>Used in the Approach and Advisors sections. Headlines sit in <code>col-span-9 col-start-4</code>,
+  with section labels in <code>col-span-3</code>. Advisor cards alternate vertical positions
+  using <code>mt-32</code> to create editorial rhythm.</p>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="vi">§ Section VI</h4>
+  <h2>Component Catalog <span class="roman">·  vi</span></h2>
+
+  <h3>Buttons</h3>
+  <p><strong>Primary (.btn-primary)</strong> — solid brass, used for main CTAs only.
+  Maximum two per page.</p>
+  <p><strong>Ghost (.btn-ghost)</strong> — transparent with brass border, used for secondary actions.</p>
+
+  <h3>Property Card</h3>
+  <p>Used in the portfolio section. Image area is 4:3 aspect ratio with placeholder pattern.
+  Replace inner placeholder div with <code>&lt;img&gt;</code> tag for live deployment.</p>
+
+  <h3>Advisor Portrait</h3>
+  <p>Used in the advisors section. Portrait area is 3:4 aspect ratio.
+  Replace inner placeholder div with <code>&lt;img&gt;</code> tag for live deployment.</p>
+
+  <h3>Form Field</h3>
+  <p>Underline-only style (no boxes). Border-bottom is brass at 30% opacity,
+  intensifying to full brass on focus.</p>
+
+  <h3>Brass Rule (.brass-rule)</h3>
+  <p>Decorative horizontal divider. Linear gradient that fades from transparent
+  to brass at 25% to transparent. Used between sections.</p>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="vii">§ Section VII</h4>
+  <h2>Tone of Voice <span class="roman">·  vii</span></h2>
+
+  <h3>Voice Pillars</h3>
+  <ul>
+    <li><strong>Considered</strong> — never reactive, urgent, or salesy</li>
+    <li><strong>Discreet</strong> — implies access without bragging</li>
+    <li><strong>Authoritative</strong> — confident without bravado</li>
+    <li><strong>Editorial</strong> — reads like a magazine, not a brochure</li>
+  </ul>
+
+  <h3>Vocabulary</h3>
+
+  <h4>Prefer</h4>
+  <ul>
+    <li>"Engagement" instead of "deal"</li>
+    <li>"Advisor" instead of "agent" (where possible)</li>
+    <li>"Principal" instead of "client" (where appropriate)</li>
+    <li>"Consultation" instead of "consultation call"</li>
+    <li>"Portfolio" instead of "listings"</li>
+    <li>"Considered" instead of "thoughtful"</li>
+    <li>"Network" instead of "team"</li>
+  </ul>
+
+  <h4>Avoid Always</h4>
+  <ul>
+    <li>Exclamation points</li>
+    <li>"Awesome", "amazing", "incredible"</li>
+    <li>"Don't miss out", "act now", "limited time"</li>
+    <li>Emoji in any public-facing copy</li>
+    <li>"Hustle", "grind", "deal of a lifetime"</li>
+    <li>"Best", "top", "#1"</li>
+  </ul>
+
+  <div class="callout">
+    <p>If a sentence could appear in a Sotheby's catalog or a private bank brochure,
+    it belongs on LeadVerdict. If it could appear in a Zillow ad, it does not.</p>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="viii">§ Section VIII</h4>
+  <h2>Imagery Standards <span class="roman">·  viii</span></h2>
+
+  <p>The site currently ships with placeholder elements where photography belongs.
+  When replacing placeholders with real imagery, follow these standards:</p>
+
+  <h3>Property Photography</h3>
+  <ul>
+    <li>Minimum resolution: 1600 × 1200 (4:3 aspect)</li>
+    <li>Style: editorial — exterior establishing shot or signature interior</li>
+    <li>Lighting: natural, never overexposed</li>
+    <li>No HDR oversaturation, no fish-eye lens</li>
+    <li>Ideal sources: Unsplash (curated), AD listings, professional architectural photographers</li>
+  </ul>
+
+  <h3>Advisor Portraits</h3>
+  <ul>
+    <li>Minimum resolution: 900 × 1200 (3:4 aspect)</li>
+    <li>Style: editorial portrait, neutral background, considered expression</li>
+    <li>No corporate headshot poses (crossed arms, big smile, business card stance)</li>
+    <li>Subject in middle to upper third of frame</li>
+    <li>Black and white acceptable — even preferred for consistency</li>
+  </ul>
+
+  <h3>How to Replace a Placeholder</h3>
+  <p>Find any element with class <code>property-image-placeholder</code> or
+  <code>agent-portrait-placeholder</code> in the HTML. Replace the <code>&lt;div&gt;</code>
+  with this:</p>
+  <pre>&lt;img src="path/to/image.jpg"
+     alt="Descriptive alt text"
+     class="absolute inset-0 w-full h-full object-cover"&gt;</pre>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="ix">§ Section IX</h4>
+  <h2>Deployment <span class="roman">·  ix</span></h2>
+
+  <h3>Recommended: Netlify (free)</h3>
+  <ol style="color: #EBE5D4; padding-left: 20px; font-size: 14px;">
+    <li style="margin: 6px 0; color: #8B887A;">Sign up at netlify.com (free, no credit card)</li>
+    <li style="margin: 6px 0; color: #8B887A;">Drag <code>leadverdict-website.html</code> onto the dashboard</li>
+    <li style="margin: 6px 0; color: #8B887A;">Site goes live instantly at a random URL</li>
+    <li style="margin: 6px 0; color: #8B887A;">Site Settings → Change site name → <code>leadverdict</code></li>
+    <li style="margin: 6px 0; color: #8B887A;">Final URL: <code>leadverdict.netlify.app</code></li>
+    <li style="margin: 6px 0; color: #8B887A;">Optional: connect custom domain for ~$12/year</li>
+  </ol>
+
+  <h3>Pre-Deployment Checklist</h3>
+  <ul>
+    <li>Form action URL replaced with real Formspree endpoint</li>
+    <li>Tidio chatbot widget script added (if using)</li>
+    <li>Property placeholder elements replaced with real images</li>
+    <li>Advisor placeholder elements replaced with portraits</li>
+    <li>Footer email address verified</li>
+    <li>Open Graph meta tags updated with final URL</li>
+    <li>Tested in Chrome, Safari, and mobile (responsive design verified)</li>
+  </ul>
+
+  <h3>Formspree Setup (free form handling)</h3>
+  <ol style="color: #EBE5D4; padding-left: 20px; font-size: 14px;">
+    <li style="margin: 6px 0; color: #8B887A;">Sign up at formspree.io (free tier: 50 submissions/month)</li>
+    <li style="margin: 6px 0; color: #8B887A;">Create a new form, name it "LeadVerdict Consultation"</li>
+    <li style="margin: 6px 0; color: #8B887A;">Copy the form endpoint URL</li>
+    <li style="margin: 6px 0; color: #8B887A;">In <code>leadverdict-website.html</code>, find <code>YOUR_FORMSPREE_ID</code></li>
+    <li style="margin: 6px 0; color: #8B887A;">Replace with your real endpoint</li>
+  </ol>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h4 id="x">§ Section X</h4>
+  <h2>Maintenance <span class="roman">·  x</span></h2>
+
+  <h3>Adding a New Property</h3>
+  <p>Find the Portfolio section in the HTML. Copy any existing
+  <code>&lt;article class="property-card"&gt;</code> block. Update the placeholder
+  letter, title, location, days, and price. Replace the placeholder div with
+  an <code>&lt;img&gt;</code> tag.</p>
+
+  <h3>Adding a New Advisor</h3>
+  <p>Find the Advisors section. Copy any existing
+  <code>&lt;div class="lg:col-span-5"&gt;</code> block. Update name, title, year,
+  and bio. To preserve the asymmetric layout, alternate <code>col-start-1</code>
+  and <code>col-start-8 mt-32</code> classes.</p>
+
+  <h3>Adding a Journal Article</h3>
+  <p>Find the Journal section. Copy any existing <code>&lt;article&gt;</code> block.
+  Update category label, date, headline, and excerpt. Wrap the entire article
+  in an <code>&lt;a href="article-url.html"&gt;</code> when ready to link to full posts.</p>
+
+  <h3>Updating the Stats Bar</h3>
+  <p>The stats in the hero section are hard-coded in the HTML. Update them
+  monthly with real numbers as the business grows. The current values are
+  reasonable for a launching firm — adjust upward as appropriate.</p>
+
+  <hr>
+
+  <div style="text-align: center; padding: 40px 0; color: #5C5A4F; font-size: 12px;">
+    <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: #B8945C; font-size: 18px; margin-bottom: 8px;">⌖</div>
+    LeadVerdict Master Guide · Drafted MMXXVI<br>
+    For internal reference. Not for redistribution.
+  </div>
+
+</div>
+</body>
+</html>

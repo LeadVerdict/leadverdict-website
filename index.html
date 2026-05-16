@@ -214,7 +214,20 @@ fbq('track', 'PageView');
   }
   @media (max-width: 520px) {
     .hero-form-wrap { flex-direction: column; padding: 8px; }
-    .hero-form-wrap .btn-brand { width: 100%; }
+    .hero-form-wrap .btn-brand { width: 100%; min-height: 52px; font-size: 15px; }
+    .hero-form-wrap .lv-input { min-height: 52px; font-size: 16px; } /* 16px prevents iOS zoom */
+  }
+
+  /* ── MOBILE-FIRST HERO OPTIMIZATIONS ── */
+  @media (max-width: 767px) {
+    /* Tighter hero so CTA shows above fold without scrolling */
+    #top { padding-top: 16px !important; padding-bottom: 24px !important; }
+    #hero-headline { font-size: 32px !important; margin-bottom: 12px !important; }
+    #hero-subheadline { font-size: 16px !important; margin-bottom: 16px !important; }
+    /* Hide hero image on small phones — form is what matters */
+    .delay-1 { display: none; }
+    /* Bigger trust badges for thumb tapping */
+    .trust-badge { font-size: 13px; padding: 4px 0; }
   }
 
   /* ── HIDE ON SCROLL ── */
@@ -466,11 +479,11 @@ fbq('track', 'PageView');
       <div class="fade-up">
         <div class="section-label">Free for Homeowners</div>
         <h1 id="hero-headline" class="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.08] tracking-tight text-gray-900 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">
-          What's Your Home<br>
-          <span class="brand-color-text">Really Worth?</span>
+          Sell Your Home for<br>
+          <span class="brand-color-text">Top Dollar</span>
         </h1>
         <p id="hero-subheadline" class="text-lg text-gray-500 leading-relaxed mb-8" style="max-width:460px;">
-          We match you with the top-rated real estate agents in your area — free, fast, and with no obligation.
+          Get matched with a top-rated Kansas City agent in 60 seconds — free, no fees, no obligation.
         </p>
 
         <!-- Hero form — works on all screen sizes -->

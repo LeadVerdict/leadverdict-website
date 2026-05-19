@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's My Home Worth? — Free Home Value Report | LeadVerdict</title>
+<meta name="description" content="Get a free, personalized home value report for your Kansas City property. Based on real market data — not generic estimates. Ready within 24 hours.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leadverdict.vercel.app/home-value">
+<meta property="og:title" content="What's My Home Worth? — Free Report | LeadVerdict">
+<meta property="og:description" content="Get a free home value report based on real Kansas City market data. No obligation, ready within 24 hours.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80&auto=format&fit=crop">
+
+<link rel="canonical" href="https://leadverdict.vercel.app/home-value">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free Home Value Report",
+  "description": "Get a free, personalized home value report for your Kansas City property.",
+  "url": "https://leadverdict.vercel.app/home-value",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "LeadVerdict",
+    "url": "https://leadverdict.vercel.app"
+  }
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6KGHGFVVXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6KGHGFVVXX');
+</script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '4494079577534111');
+fbq('track', 'PageView');
+</script>
+
+<meta name="theme-color" content="#0F4C81">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          body:    ['Inter', 'system-ui', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1A1F2E; background: #fff; overflow-x: hidden; }
+
+  :root {
+    --brand:      #79b1e2;
+    --brand-dark: #5a9bd4;
+    --brand-light:#E8F4FC;
+  }
+
+  h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+
+  .btn-brand {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px 24px; background: var(--brand); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+    border-radius: 10px; border: none; cursor: pointer; text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    white-space: nowrap;
+  }
+  .btn-brand:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-brand:active { transform: translateY(0); }
+
+  .lv-input {
+    width: 100%; padding: 15px 16px;
+    border: 1.5px solid #E5E7EB; border-radius: 10px;
+    font-family: 'Inter', sans-serif; font-size: 15px; color: #1A1F2E;
+    background: #fff; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none; min-height: 52px;
+  }
+  .lv-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(15,76,129,0.12); }
+  .lv-input::placeholder { color: #9CA3AF; }
+
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 10px; }
+
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
+  .progress-bar { height: 4px; background: #E5E7EB; border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--brand); border-radius: 99px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+  .stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1.5px solid #E8F0FA;
+    text-align: center;
+    transition: box-shadow 0.2s;
+  }
+  .stat-card:hover { box-shadow: 0 4px 24px rgba(15,76,129,0.10); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.5s ease forwards; }
+</style>
+</head>
+
+<body>
+
+<!-- ── HEADER ── -->
+<header class="sticky top-0 z-50" style="background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.06);">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
+    <a href="/" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:20px; font-weight:800; color:#1A1F2E; text-decoration:none; letter-spacing:-0.02em;">
+      Lead<span style="color:var(--brand);">Verdict</span>
+    </a>
+    <nav class="hidden sm:flex items-center" style="gap:32px;">
+      <a href="/#how-it-works" style="font-size:14px; color:#6B7280; text-decoration:none; font-weight:500;">How It Works</a>
+      <a href="/#faq" style="font-size:14px; color:#6B7280; text-decoration:none; font-weight:500;">FAQ</a>
+    </nav>
+    <a href="#report-form" class="btn-brand" style="padding:10px 18px; font-size:13px;">Get My Report →</a>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="bg-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+    <div class="fade-up">
+      <div class="section-label">Free Home Value Report</div>
+      <h1 class="text-4xl sm:text-5xl lg:text-[48px] font-extrabold leading-[1.08] tracking-tight text-gray-900 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">
+        What's your home<br>actually worth?
+      </h1>
+      <p class="text-lg text-gray-500 leading-relaxed mb-8" style="max-width:460px;">
+        Not a generic algorithm estimate. A real market analysis based on recent KC sales, neighborhood trends, and current buyer demand — prepared by local experts.
+      </p>
+
+      <!-- Trust signals -->
+      <div class="flex flex-wrap gap-6 mb-6">
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--brand);"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          100% Free
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--brand);"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Ready in 24 Hours
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--brand);"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          No Obligation
+        </div>
+      </div>
+    </div>
+
+    <div class="relative fade-up" style="animation-delay:0.15s;">
+      <img
+        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&auto=format&fit=crop"
+        alt="Home value analysis"
+        class="rounded-2xl shadow-xl w-full object-cover"
+        style="max-height:420px;"
+        loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- ── MARKET STATS ── -->
+<section class="py-12 lg:py-16" style="background:#F9FAFB;">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <div class="section-label">Kansas City Market</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">KC home values are shifting. Know where you stand.</h2>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="stat-card">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,3.5vw,34px); font-weight:800; color:var(--brand); line-height:1.1;">$285K</div>
+        <div class="mt-2 text-sm text-gray-500">Median Home Price</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,3.5vw,34px); font-weight:800; color:var(--brand); line-height:1.1;">+4.2%</div>
+        <div class="mt-2 text-sm text-gray-500">Year-Over-Year</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,3.5vw,34px); font-weight:800; color:var(--brand); line-height:1.1;">18 days</div>
+        <div class="mt-2 text-sm text-gray-500">Avg Days on Market</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,3.5vw,34px); font-weight:800; color:var(--brand); line-height:1.1;">97%</div>
+        <div class="mt-2 text-sm text-gray-500">Sale-to-List Ratio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FORM SECTION ── -->
+<section id="report-form" class="py-16 lg:py-24 bg-white">
+  <div class="max-w-xl mx-auto px-5">
+    <div class="text-center mb-8">
+      <div class="section-label">Get Your Report</div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Your free home value report</h2>
+      <p class="text-gray-500">Takes 60 seconds. We'll email your personalized report within 24 hours.</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar mb-8">
+      <div id="progress" class="progress-fill" style="width:25%;"></div>
+    </div>
+
+    <form id="value-form" action="https://prestigious-kudu-872.convex.site/webhook/lead" method="POST">
+      <input type="hidden" name="source" value="home-value-report">
+
+      <!-- Step 1: Address -->
+      <div class="form-step active" data-step="1">
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Property Address</label>
+        <input type="text" name="address" class="lv-input mb-3" placeholder="123 Main St, Kansas City, MO 64108" required autocomplete="street-address">
+        <p class="text-xs text-gray-400 mb-4">Include city, state, and ZIP for the most accurate report.</p>
+        <button type="button" class="btn-brand w-full" onclick="nextStep(2)">Continue →</button>
+      </div>
+
+      <!-- Step 2: Timeline -->
+      <div class="form-step" data-step="2">
+        <label class="block text-sm font-semibold text-gray-700 mb-3">Are you thinking about selling?</label>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <button type="button" class="step-btn" onclick="selectTimeline(this, 'ASAP')">Yes, soon</button>
+          <button type="button" class="step-btn" onclick="selectTimeline(this, '3-6 months')">In 3-6 months</button>
+          <button type="button" class="step-btn" onclick="selectTimeline(this, 'Not sure')">Not sure yet</button>
+          <button type="button" class="step-btn" onclick="selectTimeline(this, 'Just curious')">Just curious</button>
+        </div>
+        <input type="hidden" name="timeline" id="timeline-input">
+      </div>
+
+      <!-- Step 3: Condition -->
+      <div class="form-step" data-step="3">
+        <label class="block text-sm font-semibold text-gray-700 mb-3">How would you describe your home's condition?</label>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <button type="button" class="step-btn" onclick="selectCondition(this, 'Move-in ready')">Move-in ready</button>
+          <button type="button" class="step-btn" onclick="selectCondition(this, 'Needs minor updates')">Minor updates needed</button>
+          <button type="button" class="step-btn" onclick="selectCondition(this, 'Needs major work')">Major work needed</button>
+          <button type="button" class="step-btn" onclick="selectCondition(this, 'New / Renovated')">New / Renovated</button>
+        </div>
+        <input type="hidden" name="condition" id="condition-input">
+      </div>
+
+      <!-- Step 4: Contact -->
+      <div class="form-step" data-step="4">
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Where should we send your report?</label>
+        <div class="space-y-3 mb-4">
+          <input type="text" name="name" class="lv-input" placeholder="Full name" required autocomplete="name">
+          <input type="tel" name="phone" class="lv-input" placeholder="(555) 000-0000" required autocomplete="tel">
+          <input type="email" name="email" class="lv-input" placeholder="you@email.com" required autocomplete="email">
+        </div>
+        <p class="text-xs text-gray-400 mb-4">By submitting, you agree that LeadVerdict may contact you at the details above. Standard message and data rates may apply. Opt out anytime.</p>
+        <button type="submit" id="submit-btn" class="btn-brand w-full">Get My Free Report →</button>
+      </div>
+    </form>
+
+    <!-- Confirmation (hidden initially) -->
+    <div id="confirmation" style="display:none; text-align:center; padding:40px 0;">
+      <div style="width:64px; height:64px; background:var(--brand-light); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+        <svg width="32" height="32" fill="none" stroke="var(--brand)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 mb-3">Your report is on the way</h3>
+      <p class="text-gray-500 leading-relaxed" style="max-width:380px; margin:0 auto;">We're analyzing your property against recent sales and current market conditions. You'll receive your personalized home value report via email within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT YOU GET ── -->
+<section class="py-16 lg:py-20" style="background:#F9FAFB;">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <div class="section-label">Your Report Includes</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">More than a number</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="stat-card text-left">
+        <div style="width:48px; height:48px; background:var(--brand-light); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Estimated Value Range</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">A realistic price range based on comparable sales in your neighborhood — not a single number pulled from an algorithm.</p>
+      </div>
+      <div class="stat-card text-left">
+        <div style="width:48px; height:48px; background:var(--brand-light); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Comparable Sales Data</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Recent sales in your area with prices, days on market, and how they compare to your property.</p>
+      </div>
+      <div class="stat-card text-left">
+        <div style="width:48px; height:48px; background:var(--brand-light); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Market Trend Analysis</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Is your neighborhood trending up or cooling down? Understand what the market is doing right now so you can time your decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="py-8" style="background:#F9FAFB; border-top:1px solid #E5E7EB;">
+  <div class="max-w-6xl mx-auto px-5 text-center">
+    <a href="/" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; font-weight:800; color:#1A1F2E; text-decoration:none; letter-spacing:-0.02em;">
+      Lead<span style="color:var(--brand);">Verdict</span>
+    </a>
+    <p class="mt-3 text-sm text-gray-400">&copy; 2026 LeadVerdict &middot; leadverdict.co@gmail.com &middot; All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  let currentStep = 1;
+
+  function showStep(step) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`[data-step="${step}"]`);
+    if (target) target.classList.add('active');
+    document.getElementById('progress').style.width = (step * 25) + '%';
+    currentStep = step;
+  }
+
+  function nextStep(step) {
+    // Validate current step
+    const current = document.querySelector(`[data-step="${currentStep}"]`);
+    const inputs = current.querySelectorAll('input[required]');
+    for (const input of inputs) {
+      if (!input.value.trim()) {
+        input.focus();
+        input.style.borderColor = '#EF4444';
+        setTimeout(() => input.style.borderColor = '#E5E7EB', 2000);
+        return;
+      }
+    }
+    showStep(step);
+  }
+
+  function selectTimeline(btn, value) {
+    document.getElementById('timeline-input').value = value;
+    btn.parentElement.querySelectorAll('.step-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => showStep(3), 300);
+  }
+
+  function selectCondition(btn, value) {
+    document.getElementById('condition-input').value = value;
+    btn.parentElement.querySelectorAll('.step-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => showStep(4), 300);
+  }
+
+  // Form submission
+  const form = document.getElementById('value-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach((value, key) => { payload[key] = value; });
+    payload.submitted_at = new Date().toISOString();
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      // GA4 event
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'home_value',
+          event_label: payload.address
+        });
+      }
+
+      // Meta Pixel event
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'Home Value Report' });
+      }
+
+      // Show confirmation
+      form.style.display = 'none';
+      document.querySelector('.progress-bar').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+
+    } catch (err) {
+      btn.textContent = 'Get My Free Report →';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or email us at leadverdict.co@gmail.com');
+    }
+  });
+</script>
+
+</body>
+</html>

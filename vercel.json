@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/((?!assets/|kansas-city).*)", "destination": "/index.html" }
-  ]
-}

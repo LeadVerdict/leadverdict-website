@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://leadverdict.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/audit</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/case-studies</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority><lastmod>2026-05-31</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority><lastmod>2026-05-31</lastmod></url>
+</urlset>

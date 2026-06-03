@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/((?!assets/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/((?!assets/|images/|kansas-city).*)", "destination": "/index.html" }
   ]
 }

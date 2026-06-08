@@ -56,19 +56,65 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
+          "@type": ["Organization", "ProfessionalService"],
           "name": "LeadVerdict",
           "url": "https://leadverdict.vercel.app",
           "logo": "https://leadverdict.vercel.app/favicon.png",
-          "description": "AI-powered marketing agency specializing in SEO, web design, and digital marketing for law firms and solo attorneys.",
+          "description": "AI-powered legal marketing agency specializing in SEO, web design, and digital marketing for law firms and solo attorneys.",
           "email": "leadverdict.co@gmail.com",
+          "priceRange": "$$",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Kansas City",
             "addressRegion": "MO",
             "addressCountry": "US"
           },
-          "sameAs": []
+          "sameAs": [
+            "https://www.instagram.com/leadverdict",
+            "https://www.facebook.com/leadverdict",
+            "https://www.youtube.com/@leadverdict"
+          ]
+        },
+        {
+          "@type": "LegalService",
+          "name": "LeadVerdict — Law Firm Marketing",
+          "url": "https://leadverdict.vercel.app",
+          "description": "AI-powered SEO, content marketing, and web design for law firms. Helps attorneys rank on Google and generate qualified leads.",
+          "provider": {
+            "@type": "Organization",
+            "name": "LeadVerdict"
+          },
+          "areaServed": "US",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Law Firm Marketing Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Law Firm SEO",
+                  "description": "Local SEO, Google Map Pack optimization, and content strategy for attorneys."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Law Firm Website Design",
+                  "description": "Mobile-fast, conversion-optimized websites built for law firms."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Legal Content Marketing",
+                  "description": "Expert blog posts and practice area pages designed to rank and convert."
+                }
+              }
+            ]
+          }
         },
         {
           "@type": "WebSite",
@@ -145,7 +191,7 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-CUMkUL3h.js"></script>
+    <script type="module" crossorigin src="/assets/index-Da9hHXJg.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-B5qsrmLk.css">
   </head>
   <body>

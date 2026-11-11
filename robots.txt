@@ -1,10 +1,9 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://leadverdict.vercel.app/sitemap.xml
-
-# Block internal/app paths
 Disallow: /dashboard
 Disallow: /settings
 Disallow: /login
 Disallow: /signup
+Disallow: /app
+
+Sitemap: https://leadverdict.vercel.app/sitemap.xml

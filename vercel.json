@@ -1,8 +1,14 @@
 {
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/audit", "destination": "/#review", "permanent": true },
+    { "source": "/contact", "destination": "/#review", "permanent": true },
+    { "source": "/case-studies", "destination": "/", "permanent": true },
+    { "source": "/blog", "destination": "/google-business-profile-suspended", "permanent": true },
+    { "source": "/blog/:slug*", "destination": "/google-business-profile-suspended", "permanent": true }
+  ],
   "rewrites": [
-    {
-      "source": "/((?!assets/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(dashboard|login|signup|settings|privacy|terms)", "destination": "/app" },
+    { "source": "/dashboard/:path*", "destination": "/app" }
   ]
 }

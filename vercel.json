@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/audit", "destination": "/#review", "permanent": true },
-    { "source": "/contact", "destination": "/#review", "permanent": true },
+    { "source": "/audit", "destination": "/#audit", "permanent": true },
+    { "source": "/contact", "destination": "/#audit", "permanent": true },
     { "source": "/case-studies", "destination": "/", "permanent": true },
     { "source": "/blog", "destination": "/google-business-profile-suspended", "permanent": true },
     { "source": "/blog/:slug*", "destination": "/google-business-profile-suspended", "permanent": true }

@@ -4,11 +4,9 @@
     { "source": "/audit", "destination": "/#audit", "permanent": true },
     { "source": "/contact", "destination": "/#audit", "permanent": true },
     { "source": "/case-studies", "destination": "/", "permanent": true },
-    { "source": "/blog", "destination": "/google-business-profile-suspended", "permanent": true },
-    { "source": "/blog/:slug*", "destination": "/google-business-profile-suspended", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(dashboard|login|signup|settings)", "destination": "/app" },
-    { "source": "/dashboard/:path*", "destination": "/app" }
+    { "source": "/(dashboard|login|signup|settings|app)", "destination": "/", "permanent": true },
+    { "source": "/dashboard/:path*", "destination": "/", "permanent": true },
+    { "source": "/google-business-profile-suspended", "destination": "/blog/google-business-profile-suspended", "permanent": true },
+    { "source": "/blog/(content-marketing-law-firm-generate-cases|google-business-profile-optimization-attorneys-2026|law-firm-marketing-budget-2026|local-seo-for-law-firms-map-pack|seo-vs-google-ads-for-law-firms|why-law-firm-websites-fail-to-convert)", "destination": "/blog", "permanent": true }
   ]
 }

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://leadverdict.vercel.app/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://leadverdict.vercel.app/google-business-profile-suspended</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog/google-business-profile-suspended</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog/google-reviews-disappeared</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog/report-fake-google-reviews</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://leadverdict.vercel.app/blog/service-area-rules-google-business-profile</loc><lastmod>2026-11-12</lastmod></url>
   <url><loc>https://leadverdict.vercel.app/privacy</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://leadverdict.vercel.app/terms</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>
